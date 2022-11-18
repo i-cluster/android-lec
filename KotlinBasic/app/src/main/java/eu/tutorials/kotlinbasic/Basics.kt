@@ -1,10 +1,18 @@
 package eu.tutorials.kotlinbasic
 
 fun main() {
-    print("Hello, world!!!")
+    varAndData()
+    operator()
+    ifStatement()
+    whenStatement()
+    loops()
+}
+
+fun varAndData() {
+    println("Hello Kotlin")
     // This is a comment. Comments start with //
     // val is used for variables which are immutable (not changable)
-    val myName = "Denis"
+    val myName = "David"
     // myName = "Michael" // ERROR: Val cannot be reassigned
     // TODO: Find it in Todo Console
 
@@ -38,7 +46,221 @@ fun main() {
     val digitChar = '1'
 
     // Strings
-    val myStr = "Hello World"
+    val myStr = "Hello Kotlin"
     var firCharInStr = myStr[0]
     var lastCharInStr = myStr[myStr.length - 1]
+}
+
+fun operator() {
+    //Arithmetic operators (+, -, *, /, %)
+    var result = 5+3
+    result = result / 2
+    // alternatively
+    // result /= 2
+    result = result * 5
+    result = result - 1
+    var moduloResult = 5 % 2
+    println(moduloResult)
+
+    //Comparison operators (==, !=, <, >, <=, >=)
+    val isEqual = 5 == 3
+    // Concatenation - adding of "Strings"
+    println("isEqual is " + isEqual)
+    val isNotEqual = 5 != 5
+    // Kotlin has a feature called String Interpolation.
+    // This feature allows you to directly insert a template expression inside a String.
+    // Template expressions are tiny pieces of code that are evaluated and
+    // their results are concatenated with the original String.
+    // A template expression is prefixed with $ symbol.
+    // Following are examples of String interpolation
+    println("isNotEqual is $isNotEqual")
+
+    println("is 5 Greater 3 ${5 > 3}")
+    println("is 5 LowerEqual 3 ${5 >= 3}")
+    println("is 5 LowerEqual 5 ${5 >= 5}")
+
+    //Assignment operators (+=, -=, *=, /=, %=)
+    var myNum = 5
+    myNum += 3
+    println("myNum is $myNum")
+    myNum *= 4
+    println("myNum is $myNum")
+
+
+    //Increment & Decrement operators (++, --)
+    myNum++
+    println("myNum is $myNum")
+    // increments after use
+    println("myNum is ${myNum++}")
+    // increments before use
+    println("myNum is ${++myNum}")
+    println("myNum is ${--myNum}")
+}
+
+fun ifStatement() {
+    //create a variable for testing all condition
+    val age = 16
+    //create a variable for drinkingAge
+    val drinkingAge = 21
+    //create a variable for votingAge
+    val votingAge = 18
+    //create a variable for drivingAge
+    val drivingAge = 16
+
+    //Assign the if statement to a variable
+    val currentAge =  if (age >=drinkingAge){
+        println("Now you may drink in the US")
+        //return the value for this block
+        drinkingAge
+    }else if(age >=votingAge){
+        println("You may vote now")
+        //return the value for this block
+        votingAge
+    }else if (age>=drivingAge){
+        println("You may drive now")
+        //return the value for this block
+        drivingAge
+    }else{
+        println("You are too young")
+        //return the value for this block
+        age
+    }
+    //print the age for the passing condition
+    println("current age is $currentAge")
+}
+
+fun whenStatement() {
+    // Control Flows
+    // If Statements
+    var age = 17
+    if(age >= 21){
+        print("now you may drink in the US")
+    }
+    // Else If Statement - only executed if the if statement is not true
+    else if(age >= 18){
+        print("now you may vote")
+    }
+    // Else If Statement - only executed if the foregoing else if statement is not true
+    else if (age >= 16){
+        print("you now may drive")
+    }
+    // else is only executed if all of the foregoing statements weren't true
+    else{
+        print("you're too young")
+    }
+
+    // Kotlin’s "when" expression is the replacement of the switch statement
+    // from other languages like C, C++, and Java.
+    // It is compact and more powerful than switch statements.
+    var season = 3
+    when(season) {
+        1 -> println("Spring")
+        2 -> println("Summer")
+        3 -> println("Fall")
+        4 -> println("Winter")
+        else -> println("Invalid Season")
+    }
+    var month = 3
+    when(month) {
+        1,2,3 -> println("Spring")
+        in 4..6 -> println("Summer")
+        in 7..9 -> println("Fall")
+        in 10..12 -> println("Winter")
+        else -> println("Invalid Season")
+    }
+
+    // challenge - translate the if statement with the age to a when expression
+    when(age){
+        // with the !in it's the same as saying not in ...
+        !in 0..20  -> println("now you may drink in the US")
+        in 18..20  -> println("now you may vote")
+        16,17 -> println("you now may drive")
+        else -> println("you're too young")
+    }
+
+    /**
+    var x : Any = 13.37
+    when(x) {
+    is Int -> println("$x is an Int")
+    !is Double -> println("$x is not Double")
+    is String -> println("$x is a String")
+    else -> println("$x is none of the above")
+    }
+     **/
+
+    val x : Any = 13.37
+    //assign when to a variable
+    val result =  when(x) {
+    //let condition for each block be only a string
+        is Int -> "is an Int"
+        !is Double -> "is not Double"
+        is String -> "is a String"
+        else -> "is none of the above"
+    }
+    //then print x with the result
+    println("$x $result")
+}
+
+fun loops() {
+    var condition = true
+    // Loops
+    // While Loop
+    // While loop executes a block of code repeatedly as long as a given condition is true
+
+    var y = 1
+    while(y <= 10) {
+        print("$y ")
+        y++
+    }
+    println()
+
+    // Do while loop
+    // The do-while loop is similar to while loop except that it
+    // tests the condition at the end of the loop.
+    // This means that it will at least execute the body once
+    var z = 1
+    do {
+        print("$z ")
+        z++
+    } while(z <= 10)
+    println()
+
+    var feltTemp = "cold"
+    var roomTemp = 10
+    while (feltTemp == "cold"){
+        roomTemp++
+        if(roomTemp == 20){
+            feltTemp = "comfy"
+            println("it's comfy now")
+        }
+    }
+
+
+    // For Loop
+    // A for-loop is used to iterate through ranges, arrays, collections, or anything
+    // that provides an iterator (You’ll learn about iterator, arrays, ranges and collections in a future lectur    e).
+    print(".. expression: ")
+    for(num in 1..10) {
+        print("$num ")
+    }
+    println()
+
+    // infix notation
+    print("until expression: ")
+    for(i in 1 until 10) { // Same as - for(i in 1.until(10))
+        print("$i ")
+    }
+    println()
+
+    print("downTo expression: ")
+    for(i in 10 downTo 1) {     // Same as - for(i in 10.downTo(1))
+        print("$i ")
+    }
+    println()
+
+    print("until-step expression: ")
+    for(i in 1 until 10 step 2) { // Same as - for(i in 1.until(10).step(2))
+        print("$i ")
+    }
+    println()
 }
