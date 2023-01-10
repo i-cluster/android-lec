@@ -374,5 +374,5 @@ fun addUp(a: Int, b: Int): Int{
 // Article on Kotlin words https://blog.kotlin-academy.com/kotlin-programmer-dictionary-function-vs-method-vs-procedure-c0216642ee87
 // CHALLENGE: create a function that calculates the average and call it
 fun avg(a: Double, b: Double): Double {
-    return  (a + b)/2
+    return (a + b)/2
 }
